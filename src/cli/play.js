@@ -58,5 +58,5 @@ try {
   input.close();
   await mkdir(new URL('../../saves/', import.meta.url), { recursive: true });
   await writeFile(saveFile, serializeGame(state));
-  console.log('진행을 saves/slot-1.json에 저장했습니다. npm start -- --load 로 이어할 수 있습니다.');
+  console.log('진행을 saves/slot-1.json에 저장했습니다. npm run cli -- --load 로 이어할 수 있습니다.');
 }

@@ -227,6 +227,7 @@ export function restoreGame(json, catalog) {
   for (const person of Object.values(state.people)) {
     if (!person || !catalog.people.some((item) => item.id === person.id) || !Number.isFinite(person.relationship)
       || person.relationship < -100 || person.relationship > 100
+      || typeof person.name !== 'string' || person.name.length === 0 || typeof person.role !== 'string'
       || !person.traits || typeof person.traits !== 'object'
       || Object.values(person.traits).some((value) => !Number.isFinite(value) || value < 0 || value > 100)) {
       throw new Error('저장된 인물이 올바르지 않습니다.');

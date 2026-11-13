@@ -1,19 +1,4 @@
-import { advanceMonths, availableEvents } from '../core/engine.js';
-
-// 예제의 조용한 기간을 건너뛴다. 생활비·월급·NPC의 자동 변화는 아직 처리하지 않는다.
-export function nextScene(state, catalog) {
-  const progress = state.progress[state.activeTrack];
-  if (availableEvents(state, catalog).length) return state;
-  const futureMonths = [...new Set(catalog.events
-    .filter((event) => event.trackId === state.activeTrack && !progress.completedEvents.includes(event.id)
-      && event.atMonth > progress.elapsedMonths)
-    .map((event) => event.atMonth))].sort((a, b) => a - b);
-  for (const month of futureMonths) {
-    const next = advanceMonths(state, month - progress.elapsedMonths);
-    if (availableEvents(next, catalog).length) return next;
-  }
-  return state;
-}
+export { nextScene } from '../core/session.js';
 
 export function ageLabel(state) {
   return `${Math.floor(state.time.ageMonths / 12)}세 ${state.time.ageMonths % 12}개월`;

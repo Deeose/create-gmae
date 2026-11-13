@@ -152,6 +152,9 @@ test('저장·복원 뒤에도 인물 추첨과 이후 선택 결과가 재현�
     const invalid = { ...state, [key]: [null] };
     assert.throws(() => restoreGame(JSON.stringify(invalid), catalog), /올바르지/);
   }
+  const invalidPerson = structuredClone(state);
+  invalidPerson.people['school-friend'].name = null;
+  assert.throws(() => restoreGame(JSON.stringify(invalidPerson), catalog), /인물/);
 });
 
 test('false인 사실도 존재 조건에는 맞으며, 상태 접근으로 객체 원형을 읽지 않는다', () => {
