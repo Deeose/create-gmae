@@ -1,0 +1,1778 @@
+[
+  {
+    "id": "school-interest",
+    "trackId": "school",
+    "atMonth": 0,
+    "requires": [],
+    "title": "중학교 3학년, 무엇을 더 해볼까?",
+    "body": "아직 진로를 확정할 필요는 없다. 과목과 활동을 통해 관심사를 발견한다. 이후 일정은 구조 검증을 위해 압축된 가상 일정이다.",
+    "choices": [
+      {
+        "id": "science",
+        "label": "과학 탐구와 수학 문제를 더 해본다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.math",
+            "value": 12
+          },
+          {
+            "type": "add",
+            "path": "player.skills.science",
+            "value": 12
+          },
+          {
+            "type": "set",
+            "path": "facts.schoolInterest",
+            "value": "science"
+          },
+          {
+            "type": "remember",
+            "text": "중3 때 과학 탐구에 시간을 썼다.",
+            "tags": [
+              "school",
+              "interest"
+            ]
+          }
+        ],
+        "outcome": "어려운 문제를 풀어가는 과정이 재미있었다."
+      },
+      {
+        "id": "art",
+        "label": "그림과 이야기로 짧은 작품을 만든다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 15
+          },
+          {
+            "type": "add",
+            "path": "player.skills.language",
+            "value": 8
+          },
+          {
+            "type": "set",
+            "path": "facts.schoolInterest",
+            "value": "art"
+          },
+          {
+            "type": "remember",
+            "text": "중3 때 첫 짧은 작품을 완성했다.",
+            "tags": [
+              "school",
+              "interest"
+            ]
+          }
+        ],
+        "outcome": "완성한 작품을 친구들에게 보여주었다."
+      },
+      {
+        "id": "business",
+        "label": "학교 행사에서 작은 판매 활동을 해본다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.business",
+            "value": 15
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 8
+          },
+          {
+            "type": "set",
+            "path": "facts.schoolInterest",
+            "value": "business"
+          },
+          {
+            "type": "remember",
+            "text": "학교 행사 판매 활동에 참여했다.",
+            "tags": [
+              "school",
+              "interest"
+            ]
+          }
+        ],
+        "outcome": "손님이 무엇을 원하는지 묻는 법을 배웠다."
+      }
+    ]
+  },
+  {
+    "id": "school-project",
+    "trackId": "school",
+    "atMonth": 12,
+    "requires": [
+      {
+        "path": "facts.schoolInterest",
+        "op": "exists",
+        "value": true
+      }
+    ],
+    "title": "고등학교 프로젝트와 친구",
+    "body": "친구 지우가 팀 프로젝트를 같이 하자고 한다. 성적과 별개로 협업 경험을 쌓을 기회다.",
+    "choices": [
+      {
+        "id": "help-friend",
+        "label": "친구와 역할을 나눠 함께 완성한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "school-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.school-friend.relationship",
+            "value": 20
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "progress.school.metrics.projectExperience",
+            "value": 1
+          },
+          {
+            "type": "set",
+            "path": "facts.helpedSchoolFriend",
+            "value": true
+          },
+          {
+            "type": "remember",
+            "text": "지우와 역할을 나눠 학교 프로젝트를 완성했다.",
+            "tags": [
+              "school",
+              "friendship"
+            ]
+          }
+        ],
+        "outcome": "시간은 더 들었지만 서로 믿고 일할 수 있게 되었다."
+      },
+      {
+        "id": "focus-study",
+        "label": "이번에는 시험 준비에 집중한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "school-friend"
+          },
+          {
+            "type": "add",
+            "path": "player.skills.math",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.skills.language",
+            "value": 10
+          },
+          {
+            "type": "set",
+            "path": "facts.helpedSchoolFriend",
+            "value": false
+          },
+          {
+            "type": "remember",
+            "text": "고교 프로젝트보다 시험 준비를 우선했다.",
+            "tags": [
+              "school",
+              "study"
+            ]
+          }
+        ],
+        "outcome": "성적 준비에 집중했다. 친구에게는 참여하지 못하는 이유를 설명했다."
+      },
+      {
+        "id": "own-project",
+        "label": "혼자 작은 결과물을 끝까지 만든다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "school-friend"
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.skills.science",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "progress.school.metrics.projectExperience",
+            "value": 1
+          },
+          {
+            "type": "set",
+            "path": "facts.helpedSchoolFriend",
+            "value": false
+          },
+          {
+            "type": "remember",
+            "text": "고등학교에서 개인 프로젝트를 끝냈다.",
+            "tags": [
+              "school",
+              "portfolio"
+            ]
+          }
+        ],
+        "outcome": "혼자 완성한 경험이 포트폴리오의 시작이 되었다."
+      }
+    ]
+  },
+  {
+    "id": "school-next-step",
+    "trackId": "school",
+    "atMonth": 36,
+    "requires": [
+      {
+        "path": "facts.helpedSchoolFriend",
+        "op": "exists",
+        "value": true
+      }
+    ],
+    "title": "졸업 후의 첫 경로",
+    "body": "대학, 실무 훈련, 직접 경험 중 하나를 선택한다. 아래 교육 기간과 비용은 가상 예시이며 입시·학교별 차이는 추후 확장한다. 학력이 직업을 확정하지 않는다.",
+    "choices": [
+      {
+        "id": "university",
+        "label": "대학에서 전공을 배우며 프로젝트를 한다",
+        "requires": [],
+        "durationMonths": 48,
+        "effects": [
+          {
+            "type": "set",
+            "path": "facts.education",
+            "value": "university"
+          },
+          {
+            "type": "set",
+            "path": "facts.readyForCareer",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.school.phase",
+            "value": "completed"
+          },
+          {
+            "type": "add",
+            "path": "player.skills.science",
+            "value": 15
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 8
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 1200000,
+            "memo": "가상 교육비 예시 1회: 4년 전체 비용을 뜻하지 않음"
+          },
+          {
+            "type": "remember",
+            "text": "대학에서 전공과 프로젝트 경험을 쌓았다.",
+            "tags": [
+              "education"
+            ]
+          }
+        ],
+        "outcome": "4년을 압축해 전공 학습을 마쳤다. 인생의 다음 선택은 여전히 열려 있다."
+      },
+      {
+        "id": "training",
+        "label": "작품·실무 중심의 훈련을 받는다",
+        "requires": [],
+        "durationMonths": 12,
+        "effects": [
+          {
+            "type": "set",
+            "path": "facts.education",
+            "value": "training"
+          },
+          {
+            "type": "set",
+            "path": "facts.readyForCareer",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.school.phase",
+            "value": "completed"
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 15
+          },
+          {
+            "type": "add",
+            "path": "player.skills.business",
+            "value": 8
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 500000,
+            "memo": "가상 실무 훈련비 1회"
+          },
+          {
+            "type": "remember",
+            "text": "실무와 작품 중심의 훈련을 받았다.",
+            "tags": [
+              "education"
+            ]
+          }
+        ],
+        "outcome": "1년 동안 실무와 작품 제작을 연습했다."
+      },
+      {
+        "id": "experience",
+        "label": "현장 경험부터 시작한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "set",
+            "path": "facts.education",
+            "value": "experience"
+          },
+          {
+            "type": "set",
+            "path": "facts.readyForCareer",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.school.phase",
+            "value": "completed"
+          },
+          {
+            "type": "add",
+            "path": "player.skills.business",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 10
+          },
+          {
+            "type": "remember",
+            "text": "졸업 후 현장 경험부터 시작하기로 했다.",
+            "tags": [
+              "education"
+            ]
+          }
+        ],
+        "outcome": "수입과 실무 경험을 먼저 쌓는 길을 선택했다."
+      }
+    ]
+  },
+  {
+    "id": "employee-orientation",
+    "trackId": "employee",
+    "atMonth": 0,
+    "requires": [],
+    "title": "첫 출근보다 먼저, 입문 교육",
+    "body": "가상 기업 새결게임즈에 입사했다. 이 회사는 한 달간 입문 교육을 진행한다. 모든 회사의 교육 일정이 같다는 의미는 아니다.",
+    "choices": [
+      {
+        "id": "learn-together",
+        "label": "동기와 함께 배우며 모르는 것을 질문한다",
+        "requires": [],
+        "durationMonths": 1,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "employee-peer"
+          },
+          {
+            "type": "add",
+            "path": "people.employee-peer.relationship",
+            "value": 15
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 8
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "assignment"
+          },
+          {
+            "type": "remember",
+            "text": "새결게임즈 입문 교육에서 동기 민재를 만났다.",
+            "tags": [
+              "employee",
+              "orientation"
+            ]
+          }
+        ],
+        "outcome": "교육을 마치고 동기와 배운 내용을 정리했다."
+      },
+      {
+        "id": "technical-focus",
+        "label": "개발 도구와 실습 과제에 집중한다",
+        "requires": [],
+        "durationMonths": 1,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "employee-peer"
+          },
+          {
+            "type": "add",
+            "path": "player.skills.science",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "progress.employee.metrics.performance",
+            "value": 5
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "assignment"
+          },
+          {
+            "type": "remember",
+            "text": "입문 교육에서 개발 도구 실습에 집중했다.",
+            "tags": [
+              "employee",
+              "orientation"
+            ]
+          }
+        ],
+        "outcome": "도구에 익숙해졌지만 동기와 교류할 시간은 적었다."
+      }
+    ]
+  },
+  {
+    "id": "employee-assignment",
+    "trackId": "employee",
+    "atMonth": 1,
+    "requires": [
+      {
+        "path": "progress.employee.phase",
+        "op": "eq",
+        "value": "assignment"
+      }
+    ],
+    "title": "부서 배치와 멘토",
+    "body": "팀장 서현과 선배 도윤을 만났다. 도윤은 실무 경험이 많고 기준이 높은 멘토다. 회사의 규모와 별개로 함께 일할 팀의 방식도 중요하다.",
+    "choices": [
+      {
+        "id": "ask-mentor",
+        "label": "멘토에게 기대 수준과 질문 시간을 먼저 확인한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "employee-mentor"
+          },
+          {
+            "type": "meet",
+            "personId": "employee-lead"
+          },
+          {
+            "type": "add",
+            "path": "people.employee-mentor.relationship",
+            "value": 15
+          },
+          {
+            "type": "set",
+            "path": "facts.mentorAgreement",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "practice"
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 5
+          },
+          {
+            "type": "remember",
+            "text": "멘토와 질문 시간과 업무 기준을 합의했다.",
+            "tags": [
+              "employee",
+              "relationship"
+            ]
+          }
+        ],
+        "outcome": "업무를 배우는 방식에 대해 합의했다."
+      },
+      {
+        "id": "reconnect-friend",
+        "label": "같은 회사에 들어온 지우에게 팀 적응을 조언받는다",
+        "requires": [
+          {
+            "path": "facts.helpedSchoolFriend",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "employee-mentor"
+          },
+          {
+            "type": "meet",
+            "personId": "employee-lead"
+          },
+          {
+            "type": "meet",
+            "personId": "school-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.school-friend.relationship",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.stats.socialStress",
+            "value": -5
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "practice"
+          },
+          {
+            "type": "remember",
+            "text": "같은 회사에 온 지우와 학교 때의 협업을 떠올렸다.",
+            "tags": [
+              "employee",
+              "school",
+              "friendship"
+            ]
+          }
+        ],
+        "outcome": "학교에서 쌓았던 신뢰가 첫 직장에서도 도움이 되었다."
+      },
+      {
+        "id": "observe-team",
+        "label": "동료들이 일하는 방식을 관찰하며 작은 과제를 맡는다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "employee-mentor"
+          },
+          {
+            "type": "meet",
+            "personId": "employee-lead"
+          },
+          {
+            "type": "add",
+            "path": "progress.employee.metrics.performance",
+            "value": 5
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "practice"
+          },
+          {
+            "type": "remember",
+            "text": "배치된 팀에서 작은 업무부터 시작했다.",
+            "tags": [
+              "employee",
+              "work"
+            ]
+          }
+        ],
+        "outcome": "조직의 흐름을 조금씩 파악하기 시작했다."
+      }
+    ]
+  },
+  {
+    "id": "employee-deadline",
+    "trackId": "employee",
+    "atMonth": 3,
+    "requires": [
+      {
+        "path": "progress.employee.phase",
+        "op": "eq",
+        "value": "practice"
+      }
+    ],
+    "title": "마감과 공로 사이",
+    "body": "첫 프로젝트 마감이 다가왔다. 팀장은 선배의 계획에 맞추라고 하지만 자료가 부족하다. 급여는 이 사건에서 한 번만 지급하는 가상 세전 예시이며, 지난 모든 달의 급여를 계산한 것은 아니다.",
+    "choices": [
+      {
+        "id": "ask-help",
+        "label": "업무 범위와 부족한 자료를 멘토에게 구체적으로 알린다",
+        "requires": [
+          {
+            "path": "people.employee-mentor.relationship",
+            "op": "gte",
+            "value": 10
+          }
+        ],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "people.employee-mentor.relationship",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "progress.employee.metrics.performance",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": 5
+          },
+          {
+            "type": "payment",
+            "kind": "salary",
+            "amount": 2800000,
+            "memo": "가상 세전 급여 1회: 실제 직업 연봉 자료 아님"
+          },
+          {
+            "type": "set",
+            "path": "facts.firstProjectComplete",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "experienced"
+          },
+          {
+            "type": "remember",
+            "text": "멘토와 업무 범위를 조정해 첫 마감을 넘겼다.",
+            "tags": [
+              "employee",
+              "project"
+            ]
+          }
+        ],
+        "outcome": "도윤과 범위를 조정했다. 관계를 쌓아둔 덕분에 질문을 이어가기 쉬웠다."
+      },
+      {
+        "id": "report-risk",
+        "label": "팀장에게 일정 위험과 내가 한 일을 기록해 전달한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "people.employee-lead.relationship",
+            "value": -5
+          },
+          {
+            "type": "add",
+            "path": "progress.employee.metrics.performance",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.stats.socialStress",
+            "value": 10
+          },
+          {
+            "type": "payment",
+            "kind": "salary",
+            "amount": 2800000,
+            "memo": "가상 세전 급여 1회: 실제 직업 연봉 자료 아님"
+          },
+          {
+            "type": "set",
+            "path": "facts.firstProjectComplete",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "experienced"
+          },
+          {
+            "type": "remember",
+            "text": "첫 프로젝트의 일정 위험과 기여 내용을 기록했다.",
+            "tags": [
+              "employee",
+              "project",
+              "politics"
+            ]
+          }
+        ],
+        "outcome": "업무 진행은 명확해졌지만 팀장과 긴장도 생겼다."
+      },
+      {
+        "id": "work-alone",
+        "label": "이번에는 혼자 시간을 더 써서 해결한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "progress.employee.metrics.performance",
+            "value": 12
+          },
+          {
+            "type": "add",
+            "path": "player.stats.health",
+            "value": -8
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": 18
+          },
+          {
+            "type": "payment",
+            "kind": "salary",
+            "amount": 2800000,
+            "memo": "가상 세전 급여 1회: 실제 직업 연봉 자료 아님"
+          },
+          {
+            "type": "set",
+            "path": "facts.firstProjectComplete",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "experienced"
+          },
+          {
+            "type": "remember",
+            "text": "첫 마감에서 혼자 추가 업무를 감당했다.",
+            "tags": [
+              "employee",
+              "project",
+              "stress"
+            ]
+          }
+        ],
+        "outcome": "마감은 맞췄지만 피로가 쌓였다. 이 방식이 계속 가능한지는 다시 생각해야 한다."
+      }
+    ]
+  },
+  {
+    "id": "employee-newcomer",
+    "trackId": "employee",
+    "atMonth": 36,
+    "requires": [
+      {
+        "path": "facts.firstProjectComplete",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "title": "이제 내가 후배를 맞이한다",
+    "body": "입사 3년 후를 압축한 장면이다. 신입 하린이 배정되었다. 팀장은 하린의 성과를 다른 선배의 실적으로 묶자고 제안한다. 이 기간의 승진·급여·생활비는 아직 자동 계산하지 않는다.",
+    "choices": [
+      {
+        "id": "protect-credit",
+        "label": "후배의 기여를 기록하고 팀장에게 평가 기준을 묻는다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "employee-newcomer"
+          },
+          {
+            "type": "add",
+            "path": "people.employee-newcomer.relationship",
+            "value": 20
+          },
+          {
+            "type": "add",
+            "path": "people.employee-lead.relationship",
+            "value": -10
+          },
+          {
+            "type": "add",
+            "path": "player.stats.socialStress",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "progress.employee.metrics.mentoring",
+            "value": 15
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "mentor"
+          },
+          {
+            "type": "remember",
+            "text": "후배 하린의 기여를 지키기 위해 평가 기준을 물었다.",
+            "tags": [
+              "employee",
+              "mentoring",
+              "politics"
+            ]
+          }
+        ],
+        "outcome": "하린은 나를 신뢰하게 되었다. 팀장과의 의견 차이는 남았다."
+      },
+      {
+        "id": "follow-line",
+        "label": "팀장의 제안을 따르고 내 입지를 우선한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "employee-newcomer"
+          },
+          {
+            "type": "add",
+            "path": "people.employee-newcomer.relationship",
+            "value": -20
+          },
+          {
+            "type": "add",
+            "path": "people.employee-lead.relationship",
+            "value": 15
+          },
+          {
+            "type": "add",
+            "path": "player.values.influence",
+            "value": 5
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "mentor"
+          },
+          {
+            "type": "remember",
+            "text": "후배의 기여보다 팀장과의 관계를 우선했다.",
+            "tags": [
+              "employee",
+              "mentoring",
+              "politics"
+            ]
+          }
+        ],
+        "outcome": "팀장의 신뢰는 얻었지만 하린에게는 어려운 선배가 되었다."
+      },
+      {
+        "id": "negotiate",
+        "label": "공동 성과와 개인 기여를 함께 남기는 방식을 제안한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "employee-newcomer"
+          },
+          {
+            "type": "add",
+            "path": "people.employee-newcomer.relationship",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 8
+          },
+          {
+            "type": "add",
+            "path": "progress.employee.metrics.mentoring",
+            "value": 8
+          },
+          {
+            "type": "set",
+            "path": "progress.employee.phase",
+            "value": "mentor"
+          },
+          {
+            "type": "remember",
+            "text": "후배의 개인 기여와 팀 성과를 함께 기록했다.",
+            "tags": [
+              "employee",
+              "mentoring"
+            ]
+          }
+        ],
+        "outcome": "개인 기여를 남기면서 팀의 성과도 인정하는 절충안을 만들었다."
+      }
+    ]
+  },
+  {
+    "id": "creator-production",
+    "trackId": "creator",
+    "atMonth": 0,
+    "requires": [],
+    "title": "첫 독립 작품의 범위",
+    "body": "혼자 만드는 작품은 무엇을 완성할지 정하는 것부터 시작한다. 제작비와 기간은 가상의 구조 검증용 값이다.",
+    "choices": [
+      {
+        "id": "small-work",
+        "label": "작은 작품을 끝까지 완성한다",
+        "requires": [],
+        "durationMonths": 3,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "progress.creator.metrics.portfolio",
+            "value": 1
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 100000,
+            "memo": "가상 첫 작품 제작비"
+          },
+          {
+            "type": "set",
+            "path": "progress.creator.phase",
+            "value": "release"
+          },
+          {
+            "type": "remember",
+            "text": "작은 독립 작품을 완성했다.",
+            "tags": [
+              "creator",
+              "production"
+            ]
+          }
+        ],
+        "outcome": "규모를 줄여 첫 완성 경험을 얻었다."
+      },
+      {
+        "id": "collaborate-friend",
+        "label": "지우와 역할을 나누어 협업한다",
+        "requires": [
+          {
+            "path": "facts.helpedSchoolFriend",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "durationMonths": 3,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "school-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.school-friend.relationship",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 8
+          },
+          {
+            "type": "add",
+            "path": "progress.creator.metrics.portfolio",
+            "value": 1
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 150000,
+            "memo": "가상 협업 작품 제작비"
+          },
+          {
+            "type": "set",
+            "path": "progress.creator.phase",
+            "value": "release"
+          },
+          {
+            "type": "remember",
+            "text": "지우와 독립 작품의 역할과 수익 배분을 합의했다.",
+            "tags": [
+              "creator",
+              "school",
+              "friendship"
+            ]
+          }
+        ],
+        "outcome": "학교 때의 협업 방식에 이번에는 수익 배분 약속까지 더했다."
+      },
+      {
+        "id": "experiment",
+        "label": "새로운 표현 방식을 실험한다",
+        "requires": [],
+        "durationMonths": 4,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 15
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": 8
+          },
+          {
+            "type": "add",
+            "path": "progress.creator.metrics.portfolio",
+            "value": 1
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 200000,
+            "memo": "가상 실험 작품 제작비"
+          },
+          {
+            "type": "set",
+            "path": "progress.creator.phase",
+            "value": "release"
+          },
+          {
+            "type": "remember",
+            "text": "첫 독립 작품에서 새로운 표현을 실험했다.",
+            "tags": [
+              "creator",
+              "production"
+            ]
+          }
+        ],
+        "outcome": "실험을 통해 내 스타일을 발견했다. 완성까지 더 많은 시간이 필요했다."
+      }
+    ]
+  },
+  {
+    "id": "creator-release",
+    "trackId": "creator",
+    "atMonth": 3,
+    "requires": [
+      {
+        "path": "progress.creator.phase",
+        "op": "eq",
+        "value": "release"
+      }
+    ],
+    "title": "공개 방식과 계약 제안",
+    "body": "가상 유통사 종이별의 편집자 은솔이 연락했다. 작품을 직접 공개할 수도 있고, 유통 지원을 받는 대신 조건을 협의할 수도 있다. 수입은 이 사건의 가상 1회 수입이다.",
+    "choices": [
+      {
+        "id": "self-publish",
+        "label": "직접 공개하고 독자 반응을 살핀다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "creator-reader"
+          },
+          {
+            "type": "add",
+            "path": "people.creator-reader.relationship",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "progress.creator.metrics.audience",
+            "value": 15
+          },
+          {
+            "type": "payment",
+            "kind": "revenue",
+            "amount": 300000,
+            "memo": "가상 작품 직접 판매 매출"
+          },
+          {
+            "type": "set",
+            "path": "progress.creator.phase",
+            "value": "next_work"
+          },
+          {
+            "type": "remember",
+            "text": "첫 작품을 직접 공개하고 독자의 반응을 받았다.",
+            "tags": [
+              "creator",
+              "release"
+            ]
+          }
+        ],
+        "outcome": "작품의 방향을 유지하며 작은 독자층을 만났다."
+      },
+      {
+        "id": "negotiate-contract",
+        "label": "편집자에게 정산과 권리 조건을 물어본다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "creator-editor"
+          },
+          {
+            "type": "add",
+            "path": "people.creator-editor.relationship",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.skills.business",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "progress.creator.metrics.audience",
+            "value": 20
+          },
+          {
+            "type": "payment",
+            "kind": "revenue",
+            "amount": 500000,
+            "memo": "가상 계약금: 장기 수입 보장 아님"
+          },
+          {
+            "type": "set",
+            "path": "progress.creator.phase",
+            "value": "next_work"
+          },
+          {
+            "type": "remember",
+            "text": "작품 계약 전에 정산과 권리 범위를 확인했다.",
+            "tags": [
+              "creator",
+              "contract"
+            ]
+          }
+        ],
+        "outcome": "유통 지원과 권리 범위를 확인한 뒤 계약했다."
+      },
+      {
+        "id": "free-release",
+        "label": "무료로 공개하고 피드백을 모은다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "creator-reader"
+          },
+          {
+            "type": "add",
+            "path": "people.creator-reader.relationship",
+            "value": 15
+          },
+          {
+            "type": "add",
+            "path": "progress.creator.metrics.audience",
+            "value": 25
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 5
+          },
+          {
+            "type": "set",
+            "path": "progress.creator.phase",
+            "value": "next_work"
+          },
+          {
+            "type": "remember",
+            "text": "첫 작품을 무료로 공개하며 피드백을 모았다.",
+            "tags": [
+              "creator",
+              "release"
+            ]
+          }
+        ],
+        "outcome": "이번 작품의 수입은 없지만 다음 작품을 위한 독자 의견이 생겼다."
+      }
+    ]
+  },
+  {
+    "id": "creator-next-work",
+    "trackId": "creator",
+    "atMonth": 6,
+    "requires": [
+      {
+        "path": "progress.creator.phase",
+        "op": "eq",
+        "value": "next_work"
+      }
+    ],
+    "title": "후속 작품과 수입 공백",
+    "body": "다음 작품을 만드는 동안 생활을 어떻게 이어갈까? 의뢰인 유나의 단기 작업 제안이 들어왔다. 작품 활동에는 매달 정해진 월급이 없다는 상황을 다루는 예시다.",
+    "choices": [
+      {
+        "id": "commission",
+        "label": "단기 의뢰를 받고 작업 범위를 문서로 합의한다",
+        "requires": [],
+        "durationMonths": 2,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "creator-client"
+          },
+          {
+            "type": "add",
+            "path": "people.creator-client.relationship",
+            "value": 10
+          },
+          {
+            "type": "payment",
+            "kind": "revenue",
+            "amount": 800000,
+            "memo": "가상 단기 의뢰 매출"
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 100000,
+            "memo": "가상 의뢰 작업 직접 비용"
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": 8
+          },
+          {
+            "type": "set",
+            "path": "progress.creator.phase",
+            "value": "sustaining"
+          },
+          {
+            "type": "remember",
+            "text": "단기 의뢰를 받아 개인 작품 일정을 조정했다.",
+            "tags": [
+              "creator",
+              "income"
+            ]
+          }
+        ],
+        "outcome": "당장의 작업 수입을 얻었지만 개인 작품 일정은 늦어졌다."
+      },
+      {
+        "id": "focus-next",
+        "label": "생활비 여유를 확인하고 다음 작품에 집중한다",
+        "requires": [],
+        "durationMonths": 3,
+        "effects": [
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 300000,
+            "memo": "가상 후속 작품 제작비: 생활비 별도 미구현"
+          },
+          {
+            "type": "add",
+            "path": "progress.creator.metrics.portfolio",
+            "value": 1
+          },
+          {
+            "type": "add",
+            "path": "player.values.craft",
+            "value": 5
+          },
+          {
+            "type": "set",
+            "path": "progress.creator.phase",
+            "value": "sustaining"
+          },
+          {
+            "type": "remember",
+            "text": "수입 공백을 감수하고 후속 작품에 집중했다.",
+            "tags": [
+              "creator",
+              "income"
+            ]
+          }
+        ],
+        "outcome": "제작비를 쓰며 후속 작품을 준비했다. 아직 수입이 생긴 것은 아니다."
+      },
+      {
+        "id": "rest-and-plan",
+        "label": "작업을 줄이고 회복하며 예산을 다시 세운다",
+        "requires": [],
+        "durationMonths": 1,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.stats.health",
+            "value": 8
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": -10
+          },
+          {
+            "type": "add",
+            "path": "player.skills.business",
+            "value": 5
+          },
+          {
+            "type": "set",
+            "path": "progress.creator.phase",
+            "value": "sustaining"
+          },
+          {
+            "type": "remember",
+            "text": "작품 사이의 공백에 휴식과 예산 점검을 선택했다.",
+            "tags": [
+              "creator",
+              "health"
+            ]
+          }
+        ],
+        "outcome": "속도를 늦추고 다음 작업을 지속할 방법을 정리했다."
+      }
+    ]
+  },
+  {
+    "id": "owner-preparation",
+    "trackId": "owner",
+    "atMonth": 0,
+    "requires": [],
+    "title": "작은 가게를 열기 전",
+    "body": "가상 가게 모퉁이식탁을 준비한다. 손님을 만나기 전에 고정비와 운영 방식을 정해야 한다. 금액은 실제 창업비 조사가 아닌 가상 예시다.",
+    "choices": [
+      {
+        "id": "small-start",
+        "label": "작은 규모로 시작해 비용을 제한한다",
+        "requires": [],
+        "durationMonths": 1,
+        "effects": [
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 2000000,
+            "memo": "가상 소규모 개업 준비 비용"
+          },
+          {
+            "type": "add",
+            "path": "progress.owner.metrics.operations",
+            "value": 10
+          },
+          {
+            "type": "set",
+            "path": "progress.owner.phase",
+            "value": "open"
+          },
+          {
+            "type": "remember",
+            "text": "작은 규모로 가게를 시작했다.",
+            "tags": [
+              "owner",
+              "opening"
+            ]
+          }
+        ],
+        "outcome": "준비 비용을 낮추고 손님 반응을 확인할 여유를 남겼다."
+      },
+      {
+        "id": "distinct-menu",
+        "label": "대표 메뉴와 작업 동선을 먼저 다듬는다",
+        "requires": [],
+        "durationMonths": 1,
+        "effects": [
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 3000000,
+            "memo": "가상 메뉴·동선 준비 비용"
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "progress.owner.metrics.operations",
+            "value": 15
+          },
+          {
+            "type": "set",
+            "path": "progress.owner.phase",
+            "value": "open"
+          },
+          {
+            "type": "remember",
+            "text": "개업 전에 대표 메뉴와 작업 동선을 다듬었다.",
+            "tags": [
+              "owner",
+              "opening"
+            ]
+          }
+        ],
+        "outcome": "준비에 더 투자해 가게의 특징을 만들었다."
+      }
+    ]
+  },
+  {
+    "id": "owner-first-operation",
+    "trackId": "owner",
+    "atMonth": 1,
+    "requires": [
+      {
+        "path": "progress.owner.phase",
+        "op": "eq",
+        "value": "open"
+      }
+    ],
+    "title": "거래처와 첫 단골",
+    "body": "납품 담당 태오와 손님 수빈을 만났다. 태오는 대량 주문 할인을 제안한다. 재고가 남을 위험도 함께 생긴다. 아래 매출과 비용은 한 운영 기간의 가상 예시다.",
+    "choices": [
+      {
+        "id": "small-orders",
+        "label": "할인보다 필요한 만큼 주문하는 것을 우선한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "owner-supplier"
+          },
+          {
+            "type": "meet",
+            "personId": "owner-customer"
+          },
+          {
+            "type": "add",
+            "path": "people.owner-customer.relationship",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "progress.owner.metrics.customerTrust",
+            "value": 10
+          },
+          {
+            "type": "payment",
+            "kind": "revenue",
+            "amount": 1600000,
+            "memo": "가상 운영 기간 판매 매출"
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 900000,
+            "memo": "가상 운영 기간 재료·운영 비용"
+          },
+          {
+            "type": "set",
+            "path": "progress.owner.phase",
+            "value": "operating"
+          },
+          {
+            "type": "remember",
+            "text": "초기 운영에서 소량 주문으로 재고 위험을 줄였다.",
+            "tags": [
+              "owner",
+              "operations"
+            ]
+          }
+        ],
+        "outcome": "재고 손실을 줄이며 손님 반응을 확인했다."
+      },
+      {
+        "id": "bulk-orders",
+        "label": "예상 수요를 정하고 대량 주문 조건을 협의한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "owner-supplier"
+          },
+          {
+            "type": "meet",
+            "personId": "owner-customer"
+          },
+          {
+            "type": "add",
+            "path": "people.owner-supplier.relationship",
+            "value": 15
+          },
+          {
+            "type": "add",
+            "path": "progress.owner.metrics.operations",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": 10
+          },
+          {
+            "type": "payment",
+            "kind": "revenue",
+            "amount": 1800000,
+            "memo": "가상 운영 기간 판매 매출"
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 1200000,
+            "memo": "가상 운영·대량 재료 구입 비용"
+          },
+          {
+            "type": "set",
+            "path": "progress.owner.phase",
+            "value": "operating"
+          },
+          {
+            "type": "remember",
+            "text": "초기 운영에서 거래처와 대량 주문 조건을 협의했다.",
+            "tags": [
+              "owner",
+              "supplier"
+            ]
+          }
+        ],
+        "outcome": "거래처 관계는 가까워졌지만 보관과 재고 부담이 늘었다."
+      },
+      {
+        "id": "customer-feedback",
+        "label": "손님의 의견을 듣고 메뉴를 줄인다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "owner-supplier"
+          },
+          {
+            "type": "meet",
+            "personId": "owner-customer"
+          },
+          {
+            "type": "add",
+            "path": "people.owner-customer.relationship",
+            "value": 20
+          },
+          {
+            "type": "add",
+            "path": "progress.owner.metrics.customerTrust",
+            "value": 15
+          },
+          {
+            "type": "payment",
+            "kind": "revenue",
+            "amount": 1400000,
+            "memo": "가상 운영 기간 판매 매출"
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 750000,
+            "memo": "가상 운영 기간 재료·운영 비용"
+          },
+          {
+            "type": "set",
+            "path": "progress.owner.phase",
+            "value": "operating"
+          },
+          {
+            "type": "remember",
+            "text": "손님 의견을 듣고 초기 메뉴 구성을 줄였다.",
+            "tags": [
+              "owner",
+              "customer"
+            ]
+          }
+        ],
+        "outcome": "메뉴는 줄었지만 준비 부담이 낮아지고 단골의 신뢰가 쌓였다."
+      }
+    ]
+  },
+  {
+    "id": "owner-cost-pressure",
+    "trackId": "owner",
+    "atMonth": 3,
+    "requires": [
+      {
+        "path": "progress.owner.phase",
+        "op": "eq",
+        "value": "operating"
+      }
+    ],
+    "title": "원가 상승과 가게의 방향",
+    "body": "재료비가 올랐다. 가격, 품질, 일하는 시간을 어떻게 조정할까? 이 선택은 매출과 별개로 거래처·고객 관계와 건강에도 영향을 준다.",
+    "choices": [
+      {
+        "id": "explain-price",
+        "label": "원가 변화를 설명하고 가격을 조정한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "people.owner-customer.relationship",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 8
+          },
+          {
+            "type": "payment",
+            "kind": "revenue",
+            "amount": 1700000,
+            "memo": "가상 조정 후 운영 매출"
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 1100000,
+            "memo": "가상 조정 후 운영 비용"
+          },
+          {
+            "type": "set",
+            "path": "progress.owner.phase",
+            "value": "sustaining"
+          },
+          {
+            "type": "remember",
+            "text": "원가 상승을 설명하며 가게 가격을 조정했다.",
+            "tags": [
+              "owner",
+              "cost"
+            ]
+          }
+        ],
+        "outcome": "수빈과 대화하며 가게가 지속될 이유를 설명했다."
+      },
+      {
+        "id": "supplier-plan",
+        "label": "거래처와 품목과 납품 주기를 다시 협의한다",
+        "requires": [
+          {
+            "path": "people.owner-supplier.relationship",
+            "op": "gte",
+            "value": 10
+          }
+        ],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "people.owner-supplier.relationship",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "progress.owner.metrics.operations",
+            "value": 10
+          },
+          {
+            "type": "payment",
+            "kind": "revenue",
+            "amount": 1600000,
+            "memo": "가상 조정 후 운영 매출"
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 950000,
+            "memo": "가상 품목 조정 후 운영 비용"
+          },
+          {
+            "type": "set",
+            "path": "progress.owner.phase",
+            "value": "sustaining"
+          },
+          {
+            "type": "remember",
+            "text": "거래처와 납품 품목과 주기를 재협의했다.",
+            "tags": [
+              "owner",
+              "supplier"
+            ]
+          }
+        ],
+        "outcome": "쌓아온 거래 관계 덕분에 품목을 조정할 수 있었다."
+      },
+      {
+        "id": "reduce-hours",
+        "label": "영업일을 줄여 회복하고 운영을 점검한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.stats.health",
+            "value": 10
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": -10
+          },
+          {
+            "type": "payment",
+            "kind": "revenue",
+            "amount": 1000000,
+            "memo": "가상 단축 운영 매출"
+          },
+          {
+            "type": "payment",
+            "kind": "expense",
+            "amount": 800000,
+            "memo": "가상 단축 운영 비용"
+          },
+          {
+            "type": "set",
+            "path": "progress.owner.phase",
+            "value": "sustaining"
+          },
+          {
+            "type": "remember",
+            "text": "가게 영업일을 줄이고 회복 시간을 확보했다.",
+            "tags": [
+              "owner",
+              "health"
+            ]
+          }
+        ],
+        "outcome": "이번 기간의 매출은 줄었지만 건강과 운영 여유를 회복했다."
+      }
+    ]
+  }
+]

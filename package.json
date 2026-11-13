@@ -1,0 +1,14 @@
+{
+  "name": "life-paths",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "선택과 기억이 이어지는 인생 시뮬레이션의 첫 구조",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/cli/play.js",
+    "demo": "node src/cli/demo.js",
+    "validate": "node src/content/validate.js",
+    "test": "node --test"
+  }
+}
