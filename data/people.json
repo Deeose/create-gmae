@@ -1,0 +1,132 @@
+[
+  {
+    "id": "school-friend",
+    "name": "지우",
+    "role": "학교 프로젝트 친구",
+    "traits": {
+      "fairness": 75,
+      "competence": 60,
+      "ambition": 55,
+      "empathy": 75
+    },
+    "relationship": 0,
+    "background": "가상 인물. 학교 프로젝트에서 만났으며 회사 동료나 창작 협업자로 다시 만날 수 있다."
+  },
+  {
+    "id": "employee-peer",
+    "name": "민재",
+    "role": "입사 동기",
+    "traits": {
+      "fairness": 65,
+      "competence": 55,
+      "ambition": 70,
+      "empathy": 60
+    },
+    "relationship": 0,
+    "background": "가상 인물. 입문 교육에서 함께 배우는 동기다."
+  },
+  {
+    "id": "employee-mentor",
+    "name": "도윤",
+    "role": "실무 멘토",
+    "traits": {
+      "fairness": 70,
+      "competence": 85,
+      "ambition": 65,
+      "empathy": 45
+    },
+    "relationship": 0,
+    "background": "가상 인물. 실무 경험이 많고 기준이 높다. 관계를 쌓으면 질문과 협의가 쉬워진다."
+  },
+  {
+    "id": "employee-lead",
+    "name": "서현",
+    "role": "개발팀 팀장",
+    "traits": {
+      "fairness": 40,
+      "competence": 75,
+      "ambition": 85,
+      "empathy": 40
+    },
+    "relationship": 0,
+    "background": "가상 인물. 팀 성과와 자신의 조직 내 입지를 중요하게 여긴다."
+  },
+  {
+    "id": "employee-newcomer",
+    "name": "하린",
+    "role": "새로 입사한 후배",
+    "traits": {
+      "fairness": 75,
+      "competence": 45,
+      "ambition": 60,
+      "empathy": 70
+    },
+    "relationship": 0,
+    "background": "가상 인물. 플레이어 입사 3년 후의 사건에서 처음 등장한다."
+  },
+  {
+    "id": "creator-editor",
+    "name": "은솔",
+    "role": "유통사 편집자",
+    "traits": {
+      "fairness": 65,
+      "competence": 80,
+      "ambition": 70,
+      "empathy": 55
+    },
+    "relationship": 0,
+    "background": "가상 인물. 작품의 유통 지원과 계약 조건을 제안한다."
+  },
+  {
+    "id": "creator-reader",
+    "name": "다인",
+    "role": "첫 독자",
+    "traits": {
+      "fairness": 70,
+      "competence": 60,
+      "ambition": 40,
+      "empathy": 80
+    },
+    "relationship": 0,
+    "background": "가상 인물. 첫 작품을 보고 구체적인 감상을 전하는 독자다."
+  },
+  {
+    "id": "creator-client",
+    "name": "유나",
+    "role": "단기 작업 의뢰인",
+    "traits": {
+      "fairness": 60,
+      "competence": 70,
+      "ambition": 70,
+      "empathy": 50
+    },
+    "relationship": 0,
+    "background": "가상 인물. 개인 작품 사이에 단기 작업을 제안한다."
+  },
+  {
+    "id": "owner-supplier",
+    "name": "태오",
+    "role": "납품 담당자",
+    "traits": {
+      "fairness": 60,
+      "competence": 80,
+      "ambition": 65,
+      "empathy": 50
+    },
+    "relationship": 0,
+    "background": "가상 인물. 주문 규모와 납품 조건을 협의하는 거래 상대다."
+  },
+  {
+    "id": "owner-customer",
+    "name": "수빈",
+    "role": "가게 손님",
+    "traits": {
+      "fairness": 70,
+      "competence": 60,
+      "ambition": 45,
+      "empathy": 75
+    },
+    "relationship": 0,
+    "background": "가상 인물. 가게의 변화에 의견을 주며 관계에 따라 단골이 될 수 있다."
+  }
+]

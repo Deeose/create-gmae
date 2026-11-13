@@ -1,0 +1,61 @@
+[
+  {
+    "id": "school",
+    "label": "학생 시절",
+    "status": "sample",
+    "initialPhase": "middle_school",
+    "initialMetrics": {
+      "projectExperience": 0
+    },
+    "incomeModel": "none",
+    "provenance": {
+      "kind": "fictional",
+      "note": "구조 검증용 가상 설정. 모든 금액·기간·인물·기관은 실제 조사값이 아니며, 소득은 사건에서 명시한 1회 지급만 계산한다. 세금·생활비·장기 수입은 아직 계산하지 않는다. 중3부터 졸업 이후까지 중요한 사건만 압축한다."
+    }
+  },
+  {
+    "id": "employee",
+    "label": "회사에 다니는 게임 개발자",
+    "status": "sample",
+    "initialPhase": "orientation",
+    "initialMetrics": {
+      "performance": 0,
+      "mentoring": 0
+    },
+    "incomeModel": "salary",
+    "provenance": {
+      "kind": "fictional",
+      "note": "구조 검증용 가상 설정. 모든 금액·기간·인물·기관은 실제 조사값이 아니며, 소득은 사건에서 명시한 1회 지급만 계산한다. 세금·생활비·장기 수입은 아직 계산하지 않는다. 한 가상 회사의 사례이며 모든 대기업·중소기업을 대표하지 않는다."
+    }
+  },
+  {
+    "id": "creator",
+    "label": "독립 창작자",
+    "status": "sample",
+    "initialPhase": "production",
+    "initialMetrics": {
+      "portfolio": 0,
+      "audience": 0
+    },
+    "incomeModel": "project",
+    "provenance": {
+      "kind": "fictional",
+      "note": "구조 검증용 가상 설정. 모든 금액·기간·인물·기관은 실제 조사값이 아니며, 소득은 사건에서 명시한 1회 지급만 계산한다. 세금·생활비·장기 수입은 아직 계산하지 않는다. 작품 수입과 제작 비용을 구분하며 매달 정해진 월급을 가정하지 않는다."
+    }
+  },
+  {
+    "id": "owner",
+    "label": "작은 가게 운영자",
+    "status": "sample",
+    "initialPhase": "preparation",
+    "initialMetrics": {
+      "customerTrust": 0,
+      "operations": 0
+    },
+    "incomeModel": "business",
+    "provenance": {
+      "kind": "fictional",
+      "note": "구조 검증용 가상 설정. 모든 금액·기간·인물·기관은 실제 조사값이 아니며, 소득은 사건에서 명시한 1회 지급만 계산한다. 세금·생활비·장기 수입은 아직 계산하지 않는다. 매출과 비용을 따로 기록하며 매출 전체를 개인 소득으로 보지 않는다."
+    }
+  }
+]

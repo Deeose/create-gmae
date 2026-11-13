@@ -1,0 +1,150 @@
+{
+  "nodes": [
+    {
+      "id": "study",
+      "label": "학업",
+      "parentIds": [],
+      "kind": "interest",
+      "status": "sample"
+    },
+    {
+      "id": "arts",
+      "label": "예체능",
+      "parentIds": [],
+      "kind": "interest",
+      "status": "sample"
+    },
+    {
+      "id": "entrepreneurship",
+      "label": "창업",
+      "parentIds": [],
+      "kind": "interest",
+      "status": "sample"
+    },
+    {
+      "id": "natural-science",
+      "label": "자연과학",
+      "parentIds": [
+        "study"
+      ],
+      "kind": "field",
+      "status": "sample"
+    },
+    {
+      "id": "engineering",
+      "label": "공학",
+      "parentIds": [
+        "study"
+      ],
+      "kind": "field",
+      "status": "sample"
+    },
+    {
+      "id": "humanities-social",
+      "label": "인문·사회",
+      "parentIds": [
+        "study"
+      ],
+      "kind": "field",
+      "status": "sample"
+    },
+    {
+      "id": "computer",
+      "label": "컴퓨터",
+      "parentIds": [
+        "engineering"
+      ],
+      "kind": "specialty",
+      "status": "sample"
+    },
+    {
+      "id": "game-making",
+      "label": "게임 제작",
+      "parentIds": [
+        "computer",
+        "arts"
+      ],
+      "kind": "specialty",
+      "status": "sample"
+    },
+    {
+      "id": "literature",
+      "label": "문학·이야기",
+      "parentIds": [
+        "humanities-social",
+        "arts"
+      ],
+      "kind": "specialty",
+      "status": "sample"
+    },
+    {
+      "id": "food-business",
+      "label": "음식점 운영",
+      "parentIds": [
+        "entrepreneurship"
+      ],
+      "kind": "specialty",
+      "status": "sample"
+    },
+    {
+      "id": "employed-game-developer",
+      "label": "회사 소속 게임 개발자",
+      "parentIds": [
+        "game-making"
+      ],
+      "kind": "occupation",
+      "status": "sample",
+      "trackId": "employee"
+    },
+    {
+      "id": "independent-creator",
+      "label": "독립 창작자",
+      "parentIds": [
+        "game-making",
+        "literature"
+      ],
+      "kind": "occupation",
+      "status": "sample",
+      "trackId": "creator"
+    },
+    {
+      "id": "shop-owner",
+      "label": "가게 운영자",
+      "parentIds": [
+        "food-business"
+      ],
+      "kind": "occupation",
+      "status": "sample",
+      "trackId": "owner"
+    },
+    {
+      "id": "researcher",
+      "label": "연구자",
+      "parentIds": [
+        "natural-science",
+        "engineering"
+      ],
+      "kind": "occupation",
+      "status": "planned"
+    },
+    {
+      "id": "athlete",
+      "label": "운동선수",
+      "parentIds": [
+        "arts"
+      ],
+      "kind": "occupation",
+      "status": "planned"
+    },
+    {
+      "id": "politician",
+      "label": "정치인",
+      "parentIds": [
+        "humanities-social"
+      ],
+      "kind": "occupation",
+      "status": "planned"
+    }
+  ],
+  "note": "직업 전체 목록이 아닌 진로 그래프의 예시 하위집합이다. 여러 부모에서 같은 진로로 연결할 수 있다. sample도 전체 진로·입시·자격 조건을 구현했다는 뜻은 아니며, 실제 실행 가능한 생활 모듈은 school, employee, creator, owner 네 개다. planned 직업은 설계 확장 대상이며 플레이할 수 없다. 모든 기관·인물·기간·금액은 가상 예시다."
+}
