@@ -1,5 +1,5 @@
 // 화면·파일·네트워크를 모르는 공통 엔진. 입력 상태를 바꾸지 않고 새 상태를 돌려준다.
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
 export const STAT_KEYS = ['health', 'happiness', 'workStress', 'socialStress'];
 export const SKILL_KEYS = ['math', 'language', 'science', 'art', 'business', 'communication'];
 export const VALUE_KEYS = ['wealth', 'influence', 'craft', 'stability', 'freedom'];
@@ -76,6 +76,25 @@ function random(state) {
   return state.rngSeed / 4294967296;
 }
 
+function meetMutable(state, personId, catalog) {
+  const person = catalog.people.find((item) => item.id === personId);
+  if (!person) throw new Error(`없는 인물: ${personId}`);
+  if (!state.people[person.id]) {
+    const met = copy(person);
+    for (const key of Object.keys(met.traits)) {
+      met.traits[key] = Math.max(0, Math.min(100, met.traits[key] + Math.floor(random(state) * 21) - 10));
+    }
+    state.people[person.id] = { ...met, metAtMonth: state.time.elapsedMonths };
+  }
+}
+
+// 사건과 일상 활동이 같은 만남 규칙을 공유한다. 재회는 성향·관계를 초기화하지 않는다.
+export function meetPerson(state, personId, catalog) {
+  const next = copy(state);
+  meetMutable(next, personId, catalog);
+  return next;
+}
+
 function enterMutable(state, track) {
   state.activeTrack = track.id;
   state.progress[track.id] ??= {
@@ -103,6 +122,7 @@ export function createGame(catalog, { seed = 42 } = {}) {
     },
     facts: {}, people: {}, progress: {},
     memories: [], history: [], ledger: [], activeTrack: null,
+    schoolLife: { lastPlan: [], monthsCompleted: 0, lastReport: null },
   };
   enterMutable(state, school);
   return state;
@@ -149,15 +169,7 @@ function applyEffect(state, effect, catalog) {
       setPath(state, effect.path, effect.value, effect.type === 'add');
       break;
     case 'meet': {
-      const person = catalog.people.find((item) => item.id === effect.personId);
-      if (!person) throw new Error(`없는 인물: ${effect.personId}`);
-      if (!state.people[person.id]) {
-        const met = copy(person);
-        for (const key of Object.keys(met.traits)) {
-          met.traits[key] = Math.max(0, Math.min(100, met.traits[key] + Math.floor(random(state) * 21) - 10));
-        }
-        state.people[person.id] = { ...met, metAtMonth: state.time.elapsedMonths };
-      }
+      meetMutable(state, effect.personId, catalog);
       break;
     }
     case 'remember':
@@ -197,7 +209,13 @@ export function serializeGame(state) {
 
 export function restoreGame(json, catalog) {
   const state = JSON.parse(json);
-  if (state?.schemaVersion !== SAVE_VERSION) throw new Error('지원하지 않는 저장 버전입니다.');
+  if (![1, SAVE_VERSION].includes(state?.schemaVersion)) throw new Error('지원하지 않는 저장 버전입니다.');
+  const legacySave = state.schemaVersion === 1;
+  // 기존에 졸업·취업한 인생을 되돌리지 않고, 새 일정 필드만 추가한다.
+  if (legacySave) {
+    state.schemaVersion = SAVE_VERSION;
+    state.schoolLife = { lastPlan: [], monthsCompleted: 0, lastReport: null };
+  }
   if (!Number.isInteger(state.rngSeed) || state.rngSeed < 1 || state.rngSeed > 4294967295
     || !Number.isSafeInteger(state.time?.ageMonths) || state.time.ageMonths < 0
     || !Number.isSafeInteger(state.time?.elapsedMonths) || state.time.elapsedMonths < 0
@@ -216,7 +234,8 @@ export function restoreGame(json, catalog) {
   }
   const trackIds = new Set(catalog.tracks.map((track) => track.id));
   for (const [id, progress] of Object.entries(state.progress)) {
-    if (!trackIds.has(id) || !Number.isInteger(progress.elapsedMonths) || progress.elapsedMonths < 0
+    if (!trackIds.has(id) || !progress || typeof progress !== 'object' || Array.isArray(progress)
+      || !Number.isInteger(progress.elapsedMonths) || progress.elapsedMonths < 0
       || typeof progress.phase !== 'string' || !progress.metrics || typeof progress.metrics !== 'object'
       || !Array.isArray(progress.completedEvents)
       || progress.completedEvents.some((eventId) => !catalog.events.some((event) => event.id === eventId && event.trackId === id))) {
@@ -237,6 +256,40 @@ export function restoreGame(json, catalog) {
   if (state.ledger.some((entry) => !entry || !['salary', 'revenue', 'expense'].includes(entry.kind)
     || !Number.isSafeInteger(entry.amount) || entry.amount < 0 || typeof entry.memo !== 'string'
     || !Number.isSafeInteger(entry.balance))) throw new Error('저장된 거래가 올바르지 않습니다.');
-  if (state.history.some((entry) => !entry || !['choice', 'transition'].includes(entry.type))) throw new Error('저장된 이력이 올바르지 않습니다.');
+  if (state.history.some((entry) => !entry || !['choice', 'transition', 'schedule'].includes(entry.type))) throw new Error('저장된 이력이 올바르지 않습니다.');
+  const activityIds = new Set(['math', 'language', 'science', 'art', 'club', 'exercise', 'friends', 'rest']);
+  const validPlan = (plan) => Array.isArray(plan) && plan.length === 7 && plan.every((id) => activityIds.has(id));
+  const schoolLife = state.schoolLife;
+  if (!schoolLife || typeof schoolLife !== 'object' || Array.isArray(schoolLife)
+    || !Number.isSafeInteger(schoolLife.monthsCompleted) || schoolLife.monthsCompleted < 0
+    || schoolLife.monthsCompleted > (state.progress.school?.elapsedMonths ?? 0)
+    || !(Array.isArray(schoolLife.lastPlan) && (schoolLife.lastPlan.length === 0 || validPlan(schoolLife.lastPlan)))) {
+    throw new Error('저장된 학생 일정이 올바르지 않습니다.');
+  }
+  if (schoolLife.lastReport !== null && (!schoolLife.lastReport
+    || typeof schoolLife.lastReport.title !== 'string' || typeof schoolLife.lastReport.body !== 'string'
+    || !Number.isSafeInteger(schoolLife.lastReport.atMonth) || schoolLife.lastReport.atMonth < 0
+    || schoolLife.lastReport.atMonth > state.time.elapsedMonths)) throw new Error('저장된 한 달의 기록이 올바르지 않습니다.');
+  if (schoolLife.monthsCompleted > 0 && (schoolLife.lastReport === null || !validPlan(schoolLife.lastPlan))) {
+    throw new Error('완료한 학생 일정의 기록이 없습니다.');
+  }
+  for (const entry of state.history.filter((item) => item.type === 'schedule')) {
+    if (entry.trackId !== 'school' || !validPlan(entry.plan) || typeof entry.outcome !== 'string'
+      || !Number.isSafeInteger(entry.startedAtMonth) || !Number.isSafeInteger(entry.finishedAtMonth)
+      || entry.startedAtMonth < 0 || entry.finishedAtMonth !== entry.startedAtMonth + 1
+      || entry.finishedAtMonth > state.time.elapsedMonths) throw new Error('저장된 일정 이력이 올바르지 않습니다.');
+  }
+  if (legacySave && state.activeTrack === 'school' && !state.facts.readyForCareer) {
+    // 이전 저장에서 이미 지난 시점에 추가된 사건을 뒤늦게 강제하지 않는다.
+    // 기존 세 사건의 선택·완료 상태는 보존하고, 새 사건의 효과와 선택 이력은 만들지 않는다.
+    const legacySchoolEvents = new Set(['school-interest', 'school-project', 'school-next-step']);
+    const progress = state.progress.school;
+    for (const event of catalog.events) {
+      if (event.trackId === 'school' && !legacySchoolEvents.has(event.id)
+        && event.atMonth < progress.elapsedMonths && !progress.completedEvents.includes(event.id)) {
+        progress.completedEvents.push(event.id);
+      }
+    }
+  }
   return state;
 }
