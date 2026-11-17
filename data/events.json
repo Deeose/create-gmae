@@ -5,7 +5,7 @@
     "atMonth": 0,
     "requires": [],
     "title": "중학교 3학년, 무엇을 더 해볼까?",
-    "body": "아직 진로를 확정할 필요는 없다. 과목과 활동을 통해 관심사를 발견한다. 이후 일정은 구조 검증을 위해 압축된 가상 일정이다.",
+    "body": "아직 진로를 확정할 필요는 없다. 이번에는 어떤 활동을 더 해보고 싶은지 골라보자. 앞으로는 매달 방과 후와 주말을 직접 계획하며 관심을 키울 수 있다.",
     "choices": [
       {
         "id": "science",
@@ -16,12 +16,12 @@
           {
             "type": "add",
             "path": "player.skills.math",
-            "value": 12
+            "value": 3
           },
           {
             "type": "add",
             "path": "player.skills.science",
-            "value": 12
+            "value": 4
           },
           {
             "type": "set",
@@ -48,12 +48,12 @@
           {
             "type": "add",
             "path": "player.skills.art",
-            "value": 15
+            "value": 4
           },
           {
             "type": "add",
             "path": "player.skills.language",
-            "value": 8
+            "value": 3
           },
           {
             "type": "set",
@@ -80,12 +80,12 @@
           {
             "type": "add",
             "path": "player.skills.business",
-            "value": 15
+            "value": 4
           },
           {
             "type": "add",
             "path": "player.skills.communication",
-            "value": 8
+            "value": 3
           },
           {
             "type": "set",
@@ -106,6 +106,255 @@
     ]
   },
   {
+    "id": "school-first-exam",
+    "trackId": "school",
+    "atMonth": 3,
+    "requires": [
+      {
+        "path": "facts.schoolInterest",
+        "op": "exists",
+        "value": true
+      }
+    ],
+    "title": "첫 시험이 끝난 오후",
+    "body": "시험지를 돌려받았다. 맞힌 문제와 놓친 문제가 섞여 있다. 지금까지의 공부 방법을 돌아보고, 다음 달에는 무엇을 바꿀지 생각해보자.",
+    "choices": [
+      {
+        "id": "connect-concepts",
+        "label": "익숙해진 수학 개념으로 친구에게 풀이를 설명한다",
+        "requires": [
+          {
+            "path": "player.skills.math",
+            "op": "gte",
+            "value": 36
+          }
+        ],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-study-buddy"
+          },
+          {
+            "type": "add",
+            "path": "people.student-study-buddy.relationship",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": 2
+          },
+          {
+            "type": "remember",
+            "text": "첫 시험 뒤 수학 풀이를 설명하며 공부 친구와 가까워졌다.",
+            "tags": [
+              "school",
+              "study",
+              "friendship"
+            ]
+          }
+        ],
+        "outcome": "문제를 맞히는 것과 남에게 설명하는 것은 달랐다. 이해한 내용을 말로 정리하면서 새로운 공부 친구가 생겼다."
+      },
+      {
+        "id": "review-errors",
+        "label": "틀린 문제의 이유를 차근차근 적어본다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.math",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.skills.language",
+            "value": 1
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": -2
+          },
+          {
+            "type": "remember",
+            "text": "첫 시험 뒤 점수보다 틀린 이유를 살펴보았다.",
+            "tags": [
+              "school",
+              "study"
+            ]
+          }
+        ],
+        "outcome": "점수만 보고 넘기지 않고, 내가 어려워하는 부분을 알아냈다. 다음 달 공부 계획에 반영해볼 수 있겠다."
+      },
+      {
+        "id": "study-with-friend",
+        "label": "혼자 막힌 문제를 공부 모임에서 함께 풀어본다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-study-buddy"
+          },
+          {
+            "type": "add",
+            "path": "people.student-study-buddy.relationship",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.stats.socialStress",
+            "value": -2
+          },
+          {
+            "type": "remember",
+            "text": "시험이 끝난 뒤 함께 공부할 친구를 만났다.",
+            "tags": [
+              "school",
+              "study",
+              "friendship"
+            ]
+          }
+        ],
+        "outcome": "서로 모르는 문제가 다르다는 걸 알게 됐다. 다음에 막히면 이야기할 사람이 생겼다."
+      }
+    ]
+  },
+  {
+    "id": "school-festival",
+    "trackId": "school",
+    "atMonth": 6,
+    "requires": [
+      {
+        "path": "facts.schoolInterest",
+        "op": "exists",
+        "value": true
+      }
+    ],
+    "title": "학교 축제를 준비하는 주말",
+    "body": "교실마다 축제 준비가 한창이다. 무대에 서는 사람도, 부스를 꾸미는 사람도, 그냥 친구들과 즐기는 사람도 있다. 나는 어떤 시간을 보내고 싶을까?",
+    "choices": [
+      {
+        "id": "make-poster",
+        "label": "포스터와 전시물을 만드는 데 참여한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-club-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.student-club-friend.relationship",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 3
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": 2
+          },
+          {
+            "type": "remember",
+            "text": "학교 축제에서 포스터를 만들며 동아리 친구와 만났다.",
+            "tags": [
+              "school",
+              "club",
+              "art"
+            ]
+          }
+        ],
+        "outcome": "함께 만든 그림이 복도에 걸렸다. 교과서 밖에서도 내가 잘할 수 있는 일을 발견했다."
+      },
+      {
+        "id": "enjoy-with-friend",
+        "label": "지우와 부스를 구경하며 이야기를 나눈다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "school-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.school-friend.relationship",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": 4
+          },
+          {
+            "type": "add",
+            "path": "player.stats.socialStress",
+            "value": -3
+          },
+          {
+            "type": "remember",
+            "text": "축제에서 지우와 공부 밖의 이야기를 나눴다.",
+            "tags": [
+              "school",
+              "friendship"
+            ]
+          }
+        ],
+        "outcome": "별것 아닌 이야기를 하며 웃었다. 다음에 교실에서 마주쳤을 때 먼저 인사하기가 편해졌다."
+      },
+      {
+        "id": "quiet-afternoon",
+        "label": "잠깐 둘러본 뒤 조용히 쉬는 시간을 갖는다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.stats.health",
+            "value": 3
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": -4
+          },
+          {
+            "type": "remember",
+            "text": "축제 날, 나에게 필요한 만큼만 참여하고 쉬었다.",
+            "tags": [
+              "school",
+              "rest"
+            ]
+          }
+        ],
+        "outcome": "모든 행사에 끝까지 남아 있을 필요는 없었다. 내 속도를 찾으며 한숨 돌렸다."
+      }
+    ]
+  },
+  {
     "id": "school-project",
     "trackId": "school",
     "atMonth": 12,
@@ -117,7 +366,7 @@
       }
     ],
     "title": "고등학교 프로젝트와 친구",
-    "body": "친구 지우가 팀 프로젝트를 같이 하자고 한다. 성적과 별개로 협업 경험을 쌓을 기회다.",
+    "body": "고등학교 첫 학기, 친구 지우가 팀 프로젝트를 같이 하자고 한다. 그동안 쌓아온 공부 습관과 친구 관계를 실제 활동에 써볼 기회다.",
     "choices": [
       {
         "id": "help-friend",
@@ -126,18 +375,23 @@
         "durationMonths": 0,
         "effects": [
           {
+            "type": "set",
+            "path": "progress.school.phase",
+            "value": "high_school"
+          },
+          {
             "type": "meet",
             "personId": "school-friend"
           },
           {
             "type": "add",
             "path": "people.school-friend.relationship",
-            "value": 20
+            "value": 10
           },
           {
             "type": "add",
             "path": "player.skills.communication",
-            "value": 10
+            "value": 3
           },
           {
             "type": "add",
@@ -167,18 +421,23 @@
         "durationMonths": 0,
         "effects": [
           {
+            "type": "set",
+            "path": "progress.school.phase",
+            "value": "high_school"
+          },
+          {
             "type": "meet",
             "personId": "school-friend"
           },
           {
             "type": "add",
             "path": "player.skills.math",
-            "value": 10
+            "value": 3
           },
           {
             "type": "add",
             "path": "player.skills.language",
-            "value": 10
+            "value": 3
           },
           {
             "type": "set",
@@ -203,18 +462,23 @@
         "durationMonths": 0,
         "effects": [
           {
+            "type": "set",
+            "path": "progress.school.phase",
+            "value": "high_school"
+          },
+          {
             "type": "meet",
             "personId": "school-friend"
           },
           {
             "type": "add",
             "path": "player.skills.art",
-            "value": 10
+            "value": 3
           },
           {
             "type": "add",
             "path": "player.skills.science",
-            "value": 5
+            "value": 3
           },
           {
             "type": "add",
@@ -240,9 +504,432 @@
     ]
   },
   {
-    "id": "school-next-step",
+    "id": "school-club-choice",
+    "trackId": "school",
+    "atMonth": 18,
+    "requires": [
+      {
+        "path": "facts.schoolInterest",
+        "op": "exists",
+        "value": true
+      }
+    ],
+    "title": "동아리에서 맡게 된 작은 역할",
+    "body": "고등학교 동아리에서 새 활동을 준비한다. 꾸준히 얼굴을 비추던 친구가 역할을 나눠 맡자고 제안한다. 실력만큼 함께 시간을 보낸 경험도 중요해지는 순간이다.",
+    "choices": [
+      {
+        "id": "trusted-partner",
+        "label": "친해진 동아리 친구와 공동 작업을 맡는다",
+        "requires": [
+          {
+            "path": "people.student-club-friend.relationship",
+            "op": "gte",
+            "value": 10
+          }
+        ],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-club-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.student-club-friend.relationship",
+            "value": 7
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 3
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "remember",
+            "text": "친해진 동아리 친구와 공동 작업을 맡았다.",
+            "tags": [
+              "school",
+              "club",
+              "friendship"
+            ]
+          }
+        ],
+        "outcome": "서로의 작업 방식과 어려워하는 부분을 알고 있어서 일을 나누기가 수월했다."
+      },
+      {
+        "id": "small-role",
+        "label": "처음 해보는 작은 역할부터 맡는다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-club-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.student-club-friend.relationship",
+            "value": 4
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 1
+          },
+          {
+            "type": "remember",
+            "text": "동아리에서 작은 역할을 맡으며 참여 범위를 넓혔다.",
+            "tags": [
+              "school",
+              "club"
+            ]
+          }
+        ],
+        "outcome": "잘 모르는 일이라도 작은 부분부터 시작하니 감을 잡을 수 있었다."
+      },
+      {
+        "id": "keep-balance",
+        "label": "할 수 있는 범위를 설명하고 일정부터 조율한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-club-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.student-club-friend.relationship",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": -3
+          },
+          {
+            "type": "remember",
+            "text": "동아리 활동과 공부를 함께 이어갈 수 있도록 일정을 조율했다.",
+            "tags": [
+              "school",
+              "club",
+              "balance"
+            ]
+          }
+        ],
+        "outcome": "거절하는 대신 가능한 시간을 알려줬다. 무리하지 않고 관계를 이어갈 방법을 찾았다."
+      }
+    ]
+  },
+  {
+    "id": "school-exam-pressure",
+    "trackId": "school",
+    "atMonth": 24,
+    "requires": [
+      {
+        "path": "facts.schoolInterest",
+        "op": "exists",
+        "value": true
+      }
+    ],
+    "title": "새 학년, 시험과 피로 사이",
+    "body": "새 학년의 첫 시험이 다가온다. 준비하고 싶은 과목도 많지만 하루의 시간은 정해져 있다. 시험 주간만큼은 평소 루틴을 어떻게 다룰까?",
+    "choices": [
+      {
+        "id": "study-group",
+        "label": "익숙한 공부 친구에게 서로 설명하는 시간을 제안한다",
+        "requires": [
+          {
+            "path": "people.student-study-buddy.relationship",
+            "op": "gte",
+            "value": 10
+          }
+        ],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-study-buddy"
+          },
+          {
+            "type": "add",
+            "path": "people.student-study-buddy.relationship",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "player.skills.language",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.skills.science",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.stats.socialStress",
+            "value": -2
+          },
+          {
+            "type": "remember",
+            "text": "시험 전에 공부 친구와 서로 설명하며 빈틈을 찾았다.",
+            "tags": [
+              "school",
+              "study",
+              "friendship"
+            ]
+          }
+        ],
+        "outcome": "혼자 읽을 때 지나쳤던 부분을 질문으로 발견했다. 함께 공부할 수 있다는 안정감도 생겼다."
+      },
+      {
+        "id": "focus-priority",
+        "label": "가장 약한 부분을 정리하고 할 일의 양을 줄인다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.language",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": -2
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": 1
+          },
+          {
+            "type": "remember",
+            "text": "시험 전에 우선순위를 정하고 공부량을 조정했다.",
+            "tags": [
+              "school",
+              "study",
+              "balance"
+            ]
+          }
+        ],
+        "outcome": "모든 것을 끝내려는 대신 중요한 부분부터 확인했다. 남은 시간에 무엇을 해야 할지 분명해졌다."
+      },
+      {
+        "id": "extra-study",
+        "label": "이번 주는 휴식을 줄이고 문제를 더 풀어본다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.math",
+            "value": 3
+          },
+          {
+            "type": "add",
+            "path": "player.skills.science",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.stats.health",
+            "value": -4
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": -2
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": 6
+          },
+          {
+            "type": "remember",
+            "text": "시험 전에 휴식 시간을 줄여 추가 공부를 했다.",
+            "tags": [
+              "school",
+              "study",
+              "stress"
+            ]
+          }
+        ],
+        "outcome": "연습한 문제는 늘었지만 몸이 무거워졌다. 다음 달까지 이 속도를 이어갈 수 있을지는 다시 생각해봐야겠다."
+      },
+      {
+        "id": "recover-first",
+        "label": "수면과 식사를 먼저 챙기고 공부를 이어간다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.stats.health",
+            "value": 4
+          },
+          {
+            "type": "add",
+            "path": "player.stats.workStress",
+            "value": -5
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": 2
+          },
+          {
+            "type": "remember",
+            "text": "시험 준비 중에도 수면과 회복 시간을 지켰다.",
+            "tags": [
+              "school",
+              "health",
+              "rest"
+            ]
+          }
+        ],
+        "outcome": "공부 시간이 갑자기 늘지는 않았지만, 책상 앞에서 버틸 힘을 조금 되찾았다."
+      }
+    ]
+  },
+  {
+    "id": "school-future-exploration",
     "trackId": "school",
     "atMonth": 36,
+    "requires": [
+      {
+        "path": "facts.schoolInterest",
+        "op": "exists",
+        "value": true
+      }
+    ],
+    "title": "고3의 첫 진로 상담",
+    "body": "어떤 길이 나에게 맞을지 묻는 시간이 늘었다. 지금까지의 성적, 즐거웠던 활동, 만나본 사람들을 떠올려본다. 한 번의 상담으로 평생의 진로를 확정할 필요는 없다.",
+    "choices": [
+      {
+        "id": "explore-major",
+        "label": "흥미가 생긴 전공의 수업과 하는 일을 알아본다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.science",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.skills.language",
+            "value": 1
+          },
+          {
+            "type": "set",
+            "path": "facts.futureInterest",
+            "value": "university"
+          },
+          {
+            "type": "remember",
+            "text": "진로 상담에서 관심 전공의 실제 수업과 활동을 찾아봤다.",
+            "tags": [
+              "school",
+              "career"
+            ]
+          }
+        ],
+        "outcome": "전공 이름보다 무엇을 배우고 어떤 경험을 할 수 있는지 살펴보기로 했다."
+      },
+      {
+        "id": "make-something",
+        "label": "내가 만든 결과물을 정리하고 실무자의 이야기를 듣는다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.skills.business",
+            "value": 1
+          },
+          {
+            "type": "set",
+            "path": "facts.futureInterest",
+            "value": "practice"
+          },
+          {
+            "type": "remember",
+            "text": "내가 만든 결과물과 실무자의 경험을 나란히 놓고 진로를 생각했다.",
+            "tags": [
+              "school",
+              "career",
+              "portfolio"
+            ]
+          }
+        ],
+        "outcome": "준비한 작품을 설명해보니 더 배우고 싶은 부분이 보였다. 대학과 실무 훈련 모두 비교해볼 수 있겠다."
+      },
+      {
+        "id": "talk-with-neighbor",
+        "label": "가까운 어른에게 일과 생활에 대해 물어본다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-neighbor"
+          },
+          {
+            "type": "add",
+            "path": "people.student-neighbor.relationship",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "set",
+            "path": "facts.futureInterest",
+            "value": "experience"
+          },
+          {
+            "type": "remember",
+            "text": "동네에서 알게 된 이웃에게 일과 생활에 관한 이야기를 들었다.",
+            "tags": [
+              "school",
+              "career",
+              "relationship"
+            ]
+          }
+        ],
+        "outcome": "직업 이름 뒤에 실제 하루가 있다는 걸 들었다. 돈과 안정, 하고 싶은 일 중 무엇이 중요한지도 생각해봤다."
+      }
+    ]
+  },
+  {
+    "id": "school-next-step",
+    "trackId": "school",
+    "atMonth": 48,
     "requires": [
       {
         "path": "facts.helpedSchoolFriend",
@@ -251,13 +938,13 @@
       }
     ],
     "title": "졸업 후의 첫 경로",
-    "body": "대학, 실무 훈련, 직접 경험 중 하나를 선택한다. 아래 교육 기간과 비용은 가상 예시이며 입시·학교별 차이는 추후 확장한다. 학력이 직업을 확정하지 않는다.",
+    "body": "중학교와 고등학교의 일상을 지나 졸업을 앞두었다. 대학에서 더 배우거나, 실무 훈련을 시작하거나, 현장에서 경험을 쌓을 수 있다. 어느 길을 골라도 앞으로의 관계와 경험은 계속 이어진다.",
     "choices": [
       {
         "id": "university",
         "label": "대학에서 전공을 배우며 프로젝트를 한다",
         "requires": [],
-        "durationMonths": 48,
+        "durationMonths": 0,
         "effects": [
           {
             "type": "set",
@@ -267,44 +954,49 @@
           {
             "type": "set",
             "path": "facts.readyForCareer",
-            "value": true
+            "value": false
           },
           {
             "type": "set",
             "path": "progress.school.phase",
-            "value": "completed"
+            "value": "university"
           },
           {
             "type": "add",
             "path": "player.skills.science",
-            "value": 15
+            "value": 3
           },
           {
             "type": "add",
             "path": "player.skills.communication",
-            "value": 8
+            "value": 2
           },
           {
             "type": "payment",
             "kind": "expense",
             "amount": 1200000,
-            "memo": "가상 교육비 예시 1회: 4년 전체 비용을 뜻하지 않음"
+            "memo": "가상 대학 입학 준비 비용 1회: 전체 등록금이나 실제 조사값이 아님"
           },
           {
             "type": "remember",
-            "text": "대학에서 전공과 프로젝트 경험을 쌓았다.",
+            "text": "고등학교를 마치고 대학에서 관심 분야를 더 배워보기로 했다.",
             "tags": [
               "education"
             ]
+          },
+          {
+            "type": "set",
+            "path": "facts.educationStartedAt",
+            "value": 48
           }
         ],
-        "outcome": "4년을 압축해 전공 학습을 마쳤다. 인생의 다음 선택은 여전히 열려 있다."
+        "outcome": "대학 생활의 첫 달을 준비한다. 수업 밖의 시간도 직접 계획하며 나에게 맞는 분야를 찾아가기로 했다."
       },
       {
         "id": "training",
         "label": "작품·실무 중심의 훈련을 받는다",
         "requires": [],
-        "durationMonths": 12,
+        "durationMonths": 0,
         "effects": [
           {
             "type": "set",
@@ -314,38 +1006,43 @@
           {
             "type": "set",
             "path": "facts.readyForCareer",
-            "value": true
+            "value": false
           },
           {
             "type": "set",
             "path": "progress.school.phase",
-            "value": "completed"
+            "value": "training"
           },
           {
             "type": "add",
             "path": "player.skills.art",
-            "value": 15
+            "value": 3
           },
           {
             "type": "add",
             "path": "player.skills.business",
-            "value": 8
+            "value": 2
           },
           {
             "type": "payment",
             "kind": "expense",
             "amount": 500000,
-            "memo": "가상 실무 훈련비 1회"
+            "memo": "가상 실무 훈련 시작 비용 1회: 실제 조사값이 아님"
           },
           {
             "type": "remember",
-            "text": "실무와 작품 중심의 훈련을 받았다.",
+            "text": "고등학교를 마치고 실무와 작품 중심의 훈련을 시작했다.",
             "tags": [
               "education"
             ]
+          },
+          {
+            "type": "set",
+            "path": "facts.educationStartedAt",
+            "value": 48
           }
         ],
-        "outcome": "1년 동안 실무와 작품 제작을 연습했다."
+        "outcome": "실무 훈련의 첫 달을 준비한다. 매달 연습과 휴식, 사람을 만나는 시간을 조절하며 경험을 쌓기로 했다."
       },
       {
         "id": "experience",
@@ -371,22 +1068,594 @@
           {
             "type": "add",
             "path": "player.skills.business",
-            "value": 10
+            "value": 3
           },
           {
             "type": "add",
             "path": "player.skills.communication",
-            "value": 10
+            "value": 3
           },
           {
             "type": "remember",
-            "text": "졸업 후 현장 경험부터 시작하기로 했다.",
+            "text": "고등학교를 마치고 현장 경험부터 시작하기로 했다.",
             "tags": [
               "education"
             ]
+          },
+          {
+            "type": "set",
+            "path": "facts.educationStartedAt",
+            "value": 48
           }
         ],
-        "outcome": "수입과 실무 경험을 먼저 쌓는 길을 선택했다."
+        "outcome": "학교에서 쌓은 습관과 인연을 가지고 현장으로 나아가기로 했다."
+      }
+    ]
+  },
+  {
+    "id": "school-training-finish",
+    "trackId": "school",
+    "atMonth": 60,
+    "requires": [
+      {
+        "path": "facts.education",
+        "op": "eq",
+        "value": "training"
+      }
+    ],
+    "title": "훈련의 결과물을 펼쳐보며",
+    "body": "훈련을 시작한 뒤 연습과 휴식, 사람을 만나는 시간을 직접 조절해왔다. 이제 만들어둔 결과물과 익힌 습관을 살펴보고 다음 생활을 준비해보자.",
+    "choices": [
+      {
+        "id": "show-work",
+        "label": "결과물을 정리해 내가 할 수 있는 일을 설명한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "set",
+            "path": "facts.readyForCareer",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "facts.educationComplete",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.school.phase",
+            "value": "completed"
+          },
+          {
+            "type": "remember",
+            "text": "실무 훈련에서 만든 결과물을 정리하고 다음 생활을 준비했다.",
+            "tags": [
+              "school",
+              "training",
+              "portfolio",
+              "career"
+            ]
+          }
+        ],
+        "outcome": "잘한 부분과 더 배우고 싶은 부분을 나누어 적었다. 완벽하지 않아도 경험을 가지고 다음 길을 고를 수 있다."
+      },
+      {
+        "id": "share-feedback",
+        "label": "함께 연습한 사람들과 피드백을 나누고 다음 길로 간다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-club-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.student-club-friend.relationship",
+            "value": 4
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": 2
+          },
+          {
+            "type": "set",
+            "path": "facts.readyForCareer",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "facts.educationComplete",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.school.phase",
+            "value": "completed"
+          },
+          {
+            "type": "remember",
+            "text": "훈련에서 함께한 사람들과 피드백을 나누며 다음 계획을 세웠다.",
+            "tags": [
+              "school",
+              "training",
+              "friendship",
+              "career"
+            ]
+          }
+        ],
+        "outcome": "서로의 결과물에서 배울 부분이 있었다. 함께 연습한 사람들도 앞으로의 인연으로 남았다."
+      }
+    ]
+  },
+  {
+    "id": "school-university-exploration",
+    "trackId": "school",
+    "atMonth": 60,
+    "requires": [
+      {
+        "path": "facts.education",
+        "op": "eq",
+        "value": "university"
+      }
+    ],
+    "title": "대학에서 보낸 첫해",
+    "body": "대학의 첫해를 보내며 수업과 모임의 분위기를 조금 알게 됐다. 전공 안에서도 여러 분야가 있고, 수업 밖에서 배우는 일도 많다. 다음 학기의 시간을 어디에 더 써볼까?",
+    "choices": [
+      {
+        "id": "deepen-major",
+        "label": "흥미로웠던 수업의 기초를 더 다진다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.science",
+            "value": 3
+          },
+          {
+            "type": "add",
+            "path": "player.skills.math",
+            "value": 2
+          },
+          {
+            "type": "remember",
+            "text": "대학 첫해에 흥미로웠던 수업을 찾아 기초를 다시 다졌다.",
+            "tags": [
+              "school",
+              "university",
+              "study"
+            ]
+          }
+        ],
+        "outcome": "모르는 것을 분명하게 적어보니 다음에 들어보고 싶은 수업도 생겼다."
+      },
+      {
+        "id": "join-campus-group",
+        "label": "작은 공부 모임에서 함께 배울 사람을 찾는다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-study-buddy"
+          },
+          {
+            "type": "add",
+            "path": "people.student-study-buddy.relationship",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": 2
+          },
+          {
+            "type": "remember",
+            "text": "대학 생활에서도 함께 공부할 사람들과 시간을 나눴다.",
+            "tags": [
+              "school",
+              "university",
+              "friendship"
+            ]
+          }
+        ],
+        "outcome": "수업 이야기를 넘어 서로의 관심사를 알게 됐다. 혼자였다면 몰랐을 활동도 소개받았다."
+      },
+      {
+        "id": "try-new-field",
+        "label": "전공 밖의 표현과 제작 활동도 경험해본다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-club-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.student-club-friend.relationship",
+            "value": 4
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 3
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": 2
+          },
+          {
+            "type": "remember",
+            "text": "대학 첫해에 전공 밖의 제작 활동도 경험해봤다.",
+            "tags": [
+              "school",
+              "university",
+              "art"
+            ]
+          }
+        ],
+        "outcome": "아직 익숙하지 않은 분야였지만, 이전에 배운 것과 연결되는 부분을 찾았다."
+      }
+    ]
+  },
+  {
+    "id": "school-university-collaboration",
+    "trackId": "school",
+    "atMonth": 72,
+    "requires": [
+      {
+        "path": "facts.education",
+        "op": "eq",
+        "value": "university"
+      }
+    ],
+    "title": "이번에는 함께 만드는 프로젝트",
+    "body": "수업에서 배운 내용을 작은 결과물로 만들어볼 기회가 생겼다. 누구와 어떤 방식으로 일할지에 따라 경험도 달라질 것 같다.",
+    "choices": [
+      {
+        "id": "reconnect-school-friend",
+        "label": "학교 때 협업했던 지우와 다시 작은 작업을 한다",
+        "requires": [
+          {
+            "path": "facts.helpedSchoolFriend",
+            "op": "eq",
+            "value": true
+          }
+        ],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "school-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.school-friend.relationship",
+            "value": 7
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "progress.school.metrics.projectExperience",
+            "value": 1
+          },
+          {
+            "type": "remember",
+            "text": "학교 때 쌓은 신뢰를 바탕으로 지우와 대학 시절의 작업도 함께했다.",
+            "tags": [
+              "school",
+              "university",
+              "friendship",
+              "portfolio"
+            ]
+          }
+        ],
+        "outcome": "예전에 역할을 나눴던 경험이 도움이 됐다. 서로 달라진 관심사를 이야기하며 다시 맞춰갔다."
+      },
+      {
+        "id": "new-team",
+        "label": "새 팀에서 작은 역할을 맡아 끝까지 참여한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-club-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.student-club-friend.relationship",
+            "value": 5
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "progress.school.metrics.projectExperience",
+            "value": 1
+          },
+          {
+            "type": "remember",
+            "text": "대학 프로젝트에서 새로운 팀원과 작은 결과물을 완성했다.",
+            "tags": [
+              "school",
+              "university",
+              "portfolio"
+            ]
+          }
+        ],
+        "outcome": "일을 잘하는 것 외에도 진행 상황을 공유하는 습관이 필요하다는 걸 배웠다."
+      },
+      {
+        "id": "solo-project",
+        "label": "혼자 완성할 수 있는 규모로 결과물을 만든다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.science",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "progress.school.metrics.projectExperience",
+            "value": 1
+          },
+          {
+            "type": "remember",
+            "text": "대학에서 혼자 완성할 수 있는 규모의 프로젝트를 마쳤다.",
+            "tags": [
+              "school",
+              "university",
+              "portfolio"
+            ]
+          }
+        ],
+        "outcome": "규모를 줄이니 끝까지 마무리할 수 있었다. 다음에 다른 사람에게 설명할 자료도 남겼다."
+      }
+    ]
+  },
+  {
+    "id": "school-university-first-practice",
+    "trackId": "school",
+    "atMonth": 84,
+    "requires": [
+      {
+        "path": "facts.education",
+        "op": "eq",
+        "value": "university"
+      }
+    ],
+    "title": "학교 밖의 하루를 알아볼 때",
+    "body": "졸업 이후의 생활을 조금 더 구체적으로 생각하게 됐다. 현장을 알아보는 방식에도 여러 길이 있다. 지금의 나에게 필요한 경험은 무엇일까?",
+    "choices": [
+      {
+        "id": "intern-preparation",
+        "label": "관심 있는 조직의 업무를 알아보고 실무 체험을 준비한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "add",
+            "path": "player.skills.business",
+            "value": 2
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "remember",
+            "text": "관심 조직의 업무와 실무 체험 기회를 알아보았다.",
+            "tags": [
+              "school",
+              "university",
+              "career"
+            ]
+          }
+        ],
+        "outcome": "공고에 적힌 이름보다 실제로 맡는 일과 배우는 환경을 살펴보았다."
+      },
+      {
+        "id": "portfolio-review",
+        "label": "작품과 프로젝트를 정리해 피드백을 받는다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-club-friend"
+          },
+          {
+            "type": "add",
+            "path": "people.student-club-friend.relationship",
+            "value": 3
+          },
+          {
+            "type": "add",
+            "path": "player.skills.art",
+            "value": 3
+          },
+          {
+            "type": "remember",
+            "text": "작품과 프로젝트를 정리해 다른 사람에게 피드백을 받았다.",
+            "tags": [
+              "school",
+              "university",
+              "portfolio"
+            ]
+          }
+        ],
+        "outcome": "설명하기 어려운 부분을 고치고, 내가 어떤 작업을 좋아하는지 정리했다."
+      },
+      {
+        "id": "small-business-plan",
+        "label": "작은 아이디어의 고객과 비용을 직접 조사해본다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-neighbor"
+          },
+          {
+            "type": "add",
+            "path": "people.student-neighbor.relationship",
+            "value": 3
+          },
+          {
+            "type": "add",
+            "path": "player.skills.business",
+            "value": 3
+          },
+          {
+            "type": "remember",
+            "text": "작은 사업 아이디어의 고객과 비용을 알아보았다.",
+            "tags": [
+              "school",
+              "university",
+              "career",
+              "business"
+            ]
+          }
+        ],
+        "outcome": "좋아하는 아이디어라도 누가 필요로 하는지와 얼마나 드는지를 따져봐야 했다."
+      }
+    ]
+  },
+  {
+    "id": "school-university-finish",
+    "trackId": "school",
+    "atMonth": 96,
+    "requires": [
+      {
+        "path": "facts.education",
+        "op": "eq",
+        "value": "university"
+      }
+    ],
+    "title": "대학 생활의 다음 장",
+    "body": "수업과 활동을 돌아보고 학교 밖에서의 생활을 준비할 때가 왔다. 성적뿐 아니라 꾸준히 해온 일, 함께한 사람과 내가 원하는 생활도 다음 선택의 기준이 된다.",
+    "choices": [
+      {
+        "id": "review-and-move",
+        "label": "배운 것과 경험을 정리하고 다음 생활을 준비한다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "set",
+            "path": "facts.readyForCareer",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "facts.educationComplete",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.school.phase",
+            "value": "completed"
+          },
+          {
+            "type": "add",
+            "path": "player.skills.communication",
+            "value": 2
+          },
+          {
+            "type": "remember",
+            "text": "대학에서 쌓은 배움과 관계를 정리하고 다음 생활로 나아가기로 했다.",
+            "tags": [
+              "school",
+              "university",
+              "career"
+            ]
+          }
+        ],
+        "outcome": "하나의 시기를 마쳤다. 다음 길에서도 학교에서 만든 습관과 인연은 남아 있을 것이다."
+      },
+      {
+        "id": "talk-and-move",
+        "label": "주변 사람들과 앞으로의 삶을 이야기한 뒤 다음 길로 간다",
+        "requires": [],
+        "durationMonths": 0,
+        "effects": [
+          {
+            "type": "meet",
+            "personId": "student-study-buddy"
+          },
+          {
+            "type": "add",
+            "path": "people.student-study-buddy.relationship",
+            "value": 4
+          },
+          {
+            "type": "set",
+            "path": "facts.readyForCareer",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "facts.educationComplete",
+            "value": true
+          },
+          {
+            "type": "set",
+            "path": "progress.school.phase",
+            "value": "completed"
+          },
+          {
+            "type": "add",
+            "path": "player.stats.happiness",
+            "value": 2
+          },
+          {
+            "type": "remember",
+            "text": "대학 생활을 돌아보며 주변 사람들과 다음 계획을 나눴다.",
+            "tags": [
+              "school",
+              "university",
+              "friendship",
+              "career"
+            ]
+          }
+        ],
+        "outcome": "서로 다른 계획을 들으며 내 선택도 정리했다. 어떤 일을 하든 관계를 이어갈 수 있겠다는 생각이 들었다."
       }
     ]
   },

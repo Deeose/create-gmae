@@ -2,7 +2,7 @@
   {
     "id": "school-friend",
     "name": "지우",
-    "role": "학교 프로젝트 친구",
+    "role": "학교 친구",
     "traits": {
       "fairness": 75,
       "competence": 60,
@@ -10,7 +10,7 @@
       "empathy": 75
     },
     "relationship": 0,
-    "background": "가상 인물. 학교 프로젝트에서 만났으며 회사 동료나 창작 협업자로 다시 만날 수 있다."
+    "background": "학창 시절 함께 시간을 보내는 친구. 프로젝트를 함께한 경험에 따라 나중에 회사 동료나 창작 협업자로 다시 만날 수 있다."
   },
   {
     "id": "employee-peer",
@@ -128,5 +128,44 @@
     },
     "relationship": 0,
     "background": "가상 인물. 가게의 변화에 의견을 주며 관계에 따라 단골이 될 수 있다."
+  },
+  {
+    "id": "student-study-buddy",
+    "name": "수아",
+    "role": "함께 공부하는 친구",
+    "traits": {
+      "fairness": 75,
+      "competence": 68,
+      "ambition": 60,
+      "empathy": 70
+    },
+    "relationship": 0,
+    "background": "가상 인물. 문제를 서로 설명하며 공부하는 시간을 좋아한다. 학교가 달라져도 공부 모임이나 온라인 연락으로 관계를 이어갈 수 있다."
+  },
+  {
+    "id": "student-club-friend",
+    "name": "다온",
+    "role": "동아리와 제작 활동 친구",
+    "traits": {
+      "fairness": 70,
+      "competence": 62,
+      "ambition": 65,
+      "empathy": 78
+    },
+    "relationship": 0,
+    "background": "가상 인물. 작은 작품과 공동 활동을 함께하는 친구다. 꾸준히 만날수록 서로의 작업 방식과 관심사를 알아간다."
+  },
+  {
+    "id": "student-neighbor",
+    "name": "현우",
+    "role": "동네에서 알게 된 이웃",
+    "traits": {
+      "fairness": 72,
+      "competence": 75,
+      "ambition": 50,
+      "empathy": 80
+    },
+    "relationship": 0,
+    "background": "가상 인물. 동네 활동과 산책에서 만날 수 있는 이웃이다. 일과 생활에 대한 경험을 나누지만 하나의 정답을 정해주지는 않는다."
   }
 ]

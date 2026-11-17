@@ -22,11 +22,13 @@ test('정적 웹 결과물이 엔진·데이터와 함께 독립적으로 제공
     for (const [file, original] of [
       ['core/engine.js', '../src/core/engine.js'],
       ['core/session.js', '../src/core/session.js'],
+      ['core/school-life.js', '../src/core/school-life.js'],
       ['data/events.json', '../data/events.json'],
     ]) {
       const response = await fetch(`${base}/${file}`);
       assert.equal(response.status, 200);
-      assert.equal(await response.text(), await readFile(new URL(original, import.meta.url), 'utf8'));
+      const text = await response.text();
+      assert.equal(text.replace(/\?v=[a-f0-9]{12}/g, ''), await readFile(new URL(original, import.meta.url), 'utf8'));
     }
     for (const file of ['.git/config', 'package.json', 'saves/slot-1.json', 'missing.js']) {
       assert.equal((await fetch(`${base}/${file}`)).status, 404);
@@ -35,6 +37,9 @@ test('정적 웹 결과물이 엔진·데이터와 함께 독립적으로 제공
     assert.equal(head.status, 200);
     assert.equal(await head.text(), '');
     assert.equal((await fetch(base, { method: 'POST' })).status, 405);
+    const build = await (await fetch(`${base}/build-info.json`)).json();
+    assert.match(build.version, /^[a-f0-9]{12}$/);
+    assert.ok((await (await fetch(base)).text()).includes(`app.js?v=${build.version}`));
     assert.ok((await readFile(join(root, 'styles.css'), 'utf8')).length > 0);
   } finally {
     await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));

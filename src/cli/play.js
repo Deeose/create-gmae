@@ -5,6 +5,7 @@ import { loadCatalog } from '../content/load.js';
 import { validateCatalog } from '../content/validate.js';
 import { createGame, choose, availableEvents, enterTrack, serializeGame, restoreGame } from '../core/engine.js';
 import { nextScene, printScene, printSummary } from './session.js';
+import { canPlanSchoolMonth, completeSchoolMonth, DEFAULT_SCHOOL_PLAN, schoolTerm } from '../core/school-life.js';
 
 const catalog = await loadCatalog();
 const errors = validateCatalog(catalog);
@@ -35,6 +36,21 @@ try {
     state = nextScene(state, catalog);
     const event = availableEvents(state, catalog)[0];
     if (!event) {
+      if (canPlanSchoolMonth(state, catalog)) {
+        const presets = [
+          { label: '균형 잡힌 한 달 — 공부·동아리·운동·친구·휴식', plan: DEFAULT_SCHOOL_PLAN },
+          { label: '공부에 집중 — 수학·언어·과학과 휴식', plan: ['math', 'math', 'language', 'science', 'science', 'exercise', 'rest'] },
+          { label: '친구와 창작 — 동아리와 만남', plan: ['art', 'club', 'friends', 'club', 'math', 'exercise', 'rest'] },
+          { label: '회복하는 한 달 — 운동과 충분한 휴식', plan: ['rest', 'exercise', 'rest', 'friends', 'rest', 'art', 'rest'] },
+        ];
+        const term = schoolTerm(state);
+        console.log(`\n${term.label} · ${term.monthLabel}\n정규 수업 이외의 월~일 대표 활동을 정하고 한 달을 보냅니다.`);
+        const index = await pick(presets.map((preset) => preset.label));
+        if (index === null) break;
+        state = completeSchoolMonth(state, presets[index].plan, catalog);
+        console.log(`\n${state.schoolLife.lastReport.body}`);
+        continue;
+      }
       if (state.activeTrack === 'school' && state.facts.readyForCareer) {
         const tracks = catalog.tracks.filter((track) => track.id !== 'school');
         console.log('\n학교에서 쌓은 경험과 관계를 가지고 어떤 생활을 시작할까요?\n진로 트리는 설계 예시이며, 이 화면에서는 세 경로를 직접 선택합니다.');

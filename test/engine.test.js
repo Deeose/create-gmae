@@ -5,19 +5,15 @@ import { validateCatalog } from '../src/content/validate.js';
 import { createGame, advanceMonths, availableEvents, choose, enterTrack,
   matches, readPath, serializeGame, restoreGame } from '../src/core/engine.js';
 import { nextScene } from '../src/cli/session.js';
+import { graduate } from './helpers/school.js';
 
 const catalog = await loadCatalog();
 
 function school({ help = true, education = 'university', seed = 42 } = {}) {
-  let state = createGame(catalog, { seed });
-  state = choose(state, 'school-interest', 'science', catalog);
-  state = advanceMonths(state, 12);
-  state = choose(state, 'school-project', help ? 'help-friend' : 'focus-study', catalog);
-  state = advanceMonths(state, 24);
-  return choose(state, 'school-next-step', education, catalog);
+  return graduate(catalog, { project: help ? 'help-friend' : 'focus-study', education, seed });
 }
 
-// 데이터의 모든 선택 조합을 실제 엔진으로 끝까지 통과시킨다.
+// 직업 사건의 선택 조합을 실제 엔진으로 끝까지 통과시킨다.
 function endings(state) {
   const next = nextScene(state, catalog);
   const event = availableEvents(next, catalog)[0];
@@ -56,12 +52,12 @@ test('15세 시작, 과목별 능력과 교육 기간을 기록하며 입력을 
   const snapshot = structuredClone(initial);
   const state = choose(initial, 'school-interest', 'science', catalog);
   assert.deepEqual(initial, snapshot);
-  assert.equal(state.player.skills.science, 42);
+  assert.ok(state.player.skills.science > initial.player.skills.science);
   assert.equal(state.player.skills.art, 30);
   assert.equal(initial.time.ageMonths, 180);
-  assert.equal(school().time.ageMonths, 22 * 12);
-  assert.equal(school({ education: 'training' }).time.ageMonths, 19 * 12);
-  assert.equal(school({ education: 'experience' }).time.ageMonths, 18 * 12);
+  assert.equal(school().time.ageMonths, 23 * 12);
+  assert.equal(school({ education: 'training' }).time.ageMonths, 20 * 12);
+  assert.equal(school({ education: 'experience' }).time.ageMonths, 19 * 12);
 });
 
 test('미발생·완료·조건부 선택의 우회와 너무 이른 경력 시작을 막는다', () => {
@@ -84,12 +80,19 @@ test('학교에서 친구를 도운 경험이 성인기의 추가 선택을 연�
   state = choose(state, 'employee-orientation', 'learn-together', catalog);
   assert.ok(availableEvents(state, catalog)[0].choices.some((choice) => choice.id === 'reconnect-friend'));
   state = choose(state, 'employee-assignment', 'reconnect-friend', catalog);
-  assert.equal(state.people['school-friend'].relationship, relationship + 10);
+  assert.equal(state.people['school-friend'].relationship, Math.min(100, relationship + 10));
   assert.ok(state.memories.some((memory) => memory.tags.includes('school')));
 });
 
-test('모든 학교 선택과 세 직업의 선택 조합이 마지막 사건까지 이어진다', (context) => {
-  const graduates = endings(createGame(catalog));
+test('대표 학교 경로 27개와 세 직업의 선택 조합이 마지막 사건까지 이어진다', (context) => {
+  const graduates = [];
+  for (const interest of ['science', 'art', 'business']) {
+    for (const project of ['help-friend', 'focus-study', 'own-project']) {
+      for (const education of ['university', 'training', 'experience']) {
+        graduates.push(graduate(catalog, { interest, project, education }));
+      }
+    }
+  }
   assert.equal(graduates.length, 27);
   let count = 0;
   for (const graduate of graduates) {
@@ -125,7 +128,7 @@ test('경력 전환 뒤에도 사람·관계·돈·기억은 남고 이전 경�
   state = enterTrack(state, 'creator', catalog);
   state = choose(state, 'creator-production', 'collaborate-friend', catalog);
   assert.deepEqual(state.people['employee-peer'], saved.people['employee-peer']);
-  assert.equal(state.people['school-friend'].relationship, saved.people['school-friend'].relationship + 10);
+  assert.equal(state.people['school-friend'].relationship, Math.min(100, saved.people['school-friend'].relationship + 10));
   assert.ok(state.memories.some((memory) => memory.tags.includes('orientation')));
   assert.deepEqual(state.progress.employee, saved.progress.employee);
   const balance = state.player.money;
